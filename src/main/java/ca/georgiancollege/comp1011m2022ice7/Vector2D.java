@@ -3,7 +3,7 @@ package ca.georgiancollege.comp1011m2022ice7;
 /**
  * @author Nitin Nitin
  */
-public class Vector2D {
+public class Vector2D implements Comparable<Vector2D> {
 
     //Private instance members
 
@@ -140,7 +140,29 @@ public class Vector2D {
 
     // Overridden Methods
     @Override
-    public String toString() {
+    public String toString()
+    {
         return ("("+ getX() + "," + getY() + ")");
+    }
+
+    @Override
+    // compare in magnitude order
+    public int compareTo(Vector2D otherVector2D)
+    {
+        if(this.getMagnitude() > otherVector2D.getMagnitude())
+        {
+            // returning 1 means it's greater than
+            return 1;
+        }
+        else if(this.getMagnitude() < otherVector2D.getMagnitude())
+        {
+            // returning -1 means it's lesser than
+            return -1;
+        }
+        else
+        {
+            // returning 0 means it's equal
+            return 0;
+        }
     }
 }

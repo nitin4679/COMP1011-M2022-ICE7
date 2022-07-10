@@ -21,6 +21,9 @@ public class FileChooserController {
         {
             ArrayList<Vector2D> vector2DData = DBManager.Instance().readVectorTable();
 
+            vector2DData.sort(null);
+
+
             for (var vector2d : vector2DData)
             {
                 // serialize our Vector2D data
@@ -36,7 +39,7 @@ public class FileChooserController {
     @FXML
     void ReadFromFileButtonClicked(ActionEvent event)
     {
-        try(Scanner input = new Scanner(Paths.get("vector2d.txt")))
+        try(Scanner input = new Scanner(Paths.get("vector2d-old.txt")))
         {
             while(input.hasNext())
             {
