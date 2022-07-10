@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98310533-80ce-4bec-a863-74a3c5eee7d4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/vector2d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ca/georgiancollege/comp1011m2022ice7/DBManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ca/georgiancollege/comp1011m2022ice7/FileChooserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/georgiancollege/comp1011m2022ice7/FileChooserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ca/georgiancollege/comp1011m2022ice7/file-chooser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ca/georgiancollege/comp1011m2022ice7/file-chooser.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
