@@ -20,18 +20,15 @@ public class FileChooserController
     private BorderPane borderPane;
 
     @FXML
-    private Button ReadFromFileButton;
+    private Button OpenFileButton;
     @FXML
-    private Button SaveToFileButton;
-
-    @FXML
-    private Button SelectFileButton;
+    private Button SaveFileButton;
 
     @FXML
     private TextArea textArea;
 
-    @FXML
-    void SaveToFileButtonClicked(ActionEvent event)
+
+    private void SaveToFile()
     {
         try(Formatter output = new Formatter(activeFilePath) )
         {
@@ -52,8 +49,8 @@ public class FileChooserController
         }
     }
 
-    @FXML
-    void ReadFromFileButtonClicked(ActionEvent event)
+
+    private void ReadFromFile()
     {
         try(Scanner input = new Scanner(Paths.get(activeFilePath)))
         {
@@ -67,12 +64,11 @@ public class FileChooserController
             exception.printStackTrace();
         }
     }
-    @FXML
-    void SelectFileButtonClicked(ActionEvent event)
+
+    private void ShowFileDialog(FileDialogType type)
     {
         // configure dialog (modal window) allowing selection of a file
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select File");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt"),
                 new FileChooser.ExtensionFilter("All Files (*.*)", "*.*")
@@ -83,17 +79,54 @@ public class FileChooserController
         fileChooser.setInitialDirectory(new File("."));
 
         // display the FileChooser Dialog
-        File file = fileChooser.showOpenDialog(borderPane.getScene().getWindow());
+        File file = null;
 
+        switch (type)
+        {
+            case OPEN:
+                fileChooser.setTitle("Open File");
+                file = fileChooser.showOpenDialog(borderPane.getScene().getWindow());
+                // process selected Path or display a message
+                if(file != null)
+                {
+                    activeFilePath = file.getName();
+                    ReadFromFile();
+                }
 
-        // process selected Path or display a message
-        if(file != null)
-        {
-            activeFilePath = file.getName();
+                else
+                {
+                    textArea.setText("Open File");
+                }
+                break;
+            case SAVE:
+                fileChooser.setTitle("Save File");
+                fileChooser.setInitialFileName("vector2d.txt");
+                file = fileChooser.showSaveDialog(borderPane.getScene().getWindow());
+                // process selected Path or display a message
+                if(file != null)
+                {
+                    activeFilePath = file.getName();
+                    SaveToFile();
+                }
+
+                else
+                {
+                    textArea.setText("Save File");
+                }
+                break;
         }
-        else
-        {
-            textArea.setText("Select file");
-        }
+
+    }
+
+    @FXML
+    void OpenFileButtonClicked(ActionEvent event)
+    {
+        ShowFileDialog(FileDialogType.OPEN);
+    }
+
+    @FXML
+    void SaveFileButtonClicked(ActionEvent event)
+    {
+        ShowFileDialog(FileDialogType.SAVE);
     }
 }
